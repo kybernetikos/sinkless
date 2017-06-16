@@ -1,3 +1,5 @@
+const NO_CHANGE = {}
+
 function bindModel(model, app, pane) {
 	function setContent(element, content) {
 		element.innerHTML = ''
@@ -18,9 +20,11 @@ function bindModel(model, app, pane) {
 		}
 		const result = model[eventName](input)
 		if (result instanceof Promise) {
-			result.then(render)
+			result.then((value) => value === NO_CHANGE ? null : render())
 		}
-		render()
+		if (result !== NO_CHANGE) {
+			render()
+		}
 	}
 
 	render()

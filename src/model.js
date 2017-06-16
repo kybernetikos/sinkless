@@ -58,6 +58,16 @@ class Model {
 		this.enteredMaster = ''
 		this.calculatedPassword = ''
 		this.selectedView = view
+		this.selectPurpose(this.selectedSettings.purpose)
+	}
+
+	clearGeneratedPassword() {
+		if (this.calculatedPassword !== '') {
+			this.calculatedPassword = ''
+			this.enteredMaster = ''
+		} else {
+			return NO_CHANGE
+		}
 	}
 
 	selectPurpose(purpose) {

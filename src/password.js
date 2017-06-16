@@ -24,6 +24,7 @@ const symbol = "_-%$#.!@^&*()"
 
 const defaultAlphabet = lowerCase + upperCase + numeric + symbol
 async function generatePass(masterPassword, salt, version = 0, len = 40, alphabet = defaultAlphabet, purpose = window.location.host) {
+	console.log('generate with alphabet', alphabet)
 	const buffer = await pbkdf(purpose + version + masterPassword, salt, 800000, len, "SHA-512")
 	return Array.from(new Uint8Array(buffer)).map((x) => alphabet.charAt(Math.floor((x / 256) * alphabet.length))).join("")
 }
@@ -32,6 +33,7 @@ async function generatePass(masterPassword, salt, version = 0, len = 40, alphabe
 class Settings {
 	constructor(purpose, version = 0, salt = "salt", length = 40, alphabet = defaultAlphabet) {
 		Object.assign(this, {purpose, version, salt, length, alphabet})
+		console.log(alphabet)
 	}
 
 	password(masterPassword) {
