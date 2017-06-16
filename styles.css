@@ -1,0 +1,72 @@
+body {
+    background-color: darkblue;
+    color: aqua;
+    font-family: 'DejaVu Sans Mono', monospace;
+    font-size: small;
+}
+
+.label {
+    display: inline-block;
+    width: 7em;
+    color: white;
+}
+
+input {
+    font-family: 'DejaVu Sans Mono', monospace;
+    border: 0;
+    border-bottom: 1px dotted aqua;
+    background-color: darkblue;
+    color: aqua;
+    font-size: larger;
+    width: 18em;
+}
+
+.password {
+    width: 27em;
+    border: 0;
+    font-size: large;
+    margin-top: 10px;
+}
+
+button {
+    border: 1px solid aqua;
+    background-color: darkblue;
+    color: aqua;
+    font-family: 'DejaVu Sans Mono', monospace;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+button:active {
+    background-color: aqua;
+    color: darkblue;
+}
+
+.settingsEditor {
+    width: 515px;
+}
+
+.allButtons {
+    width: 90px;
+    user-select: none;
+    flex: none;
+}
+
+.settingsButtons {
+    height: 2em;
+}
+
+.storedSettingsTable {  }
+
+.passwordGenerator {
+    width: 500px;
+}
+
+.settingsRow {
+    white-space: nowrap;
+    height: 2em;
+}
+
+.emojisentence {
+    font-size: x-large;
+}
