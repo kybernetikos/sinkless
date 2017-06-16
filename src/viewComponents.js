@@ -47,7 +47,7 @@ const passwordGenerator = (model, action) => 	div(
 				if (e.shiftKey) {
 					if (window.tabs) {
 						tabs.executeScript({
-							code: `document.activeElement.value='${model.calculatedPassword}';`
+							code: `document.activeElement.value='${model.calculatedPassword.replace(/'/g, "\\'")}';`
 						})
 					} else {
 						console.log('Not running as an extension, will not insert generated password.')
