@@ -14,6 +14,8 @@ password.  Clicking on it or pressing enter should copy it to your clipboard.  I
 shift-enter should automatically try to enter it into whatever input you were in when you triggered
 sinkless.
 
+![screenshot](img/screenshot.png)
+
 Hotkeys
 -------
 
