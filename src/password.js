@@ -1,34 +1,9 @@
-async function pbkdf(keyStr, saltStr, iterations, keyLen, digestAlgo = "SHA-512") {
-	const key = await window.crypto.subtle.importKey(
-		'raw',
-		new TextEncoder("utf-8").encode(keyStr),
-		{name: 'PBKDF2'},
-		false,
-		['deriveBits']
-	)
-	return await window.crypto.subtle.deriveBits({
-			"name": "PBKDF2",
-			salt: new TextEncoder("utf-8").encode(saltStr),
-			iterations,
-			hash: {name: digestAlgo}
-		},
-		key,
-		keyLen * 8
-	)
-}
-
 const lowerCase = "abcdefghijklmnopqrstuvwxyz"
 const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const numeric = "0123456789"
 const symbol = "_-%$#.!@^&*()"
 
 const defaultAlphabet = lowerCase + upperCase + numeric + symbol
-async function generatePass(masterPassword, salt, version = 0, len = 40, alphabet = defaultAlphabet, purpose = window.location.host) {
-	console.log('generate with alphabet', alphabet)
-	const buffer = await pbkdf(purpose + version + masterPassword, salt, 800000, len, "SHA-512")
-	return Array.from(new Uint8Array(buffer)).map((x) => alphabet.charAt(Math.floor((x / 256) * alphabet.length))).join("")
-}
-
 
 class Settings {
 	constructor(purpose, version = 0, salt = "salt", length = 40, alphabet = defaultAlphabet) {
@@ -64,4 +39,28 @@ class Settings {
 	static toRows(settings = {}) {
 		return Object.values(settings).map(String).join('\n')
 	}
+}
+
+async function generatePass(masterPassword, salt, version = 0, len = 40, alphabet, purpose) {
+	const buffer = await pbkdf(purpose + version + masterPassword, salt, 800000, len, "SHA-512")
+	return Array.from(new Uint8Array(buffer)).map((x) => alphabet.charAt(Math.floor((x / 256) * alphabet.length))).join("")
+}
+
+async function pbkdf(keyStr, saltStr, iterations, keyLen, digestAlgo) {
+	const key = await window.crypto.subtle.importKey(
+		'raw',
+		new TextEncoder("utf-8").encode(keyStr),
+		{name: 'PBKDF2'},
+		false,
+		['deriveBits']
+	)
+	return await window.crypto.subtle.deriveBits({
+			"name": "PBKDF2",
+			salt: new TextEncoder("utf-8").encode(saltStr),
+			iterations,
+			hash: {name: digestAlgo}
+		},
+		key,
+		keyLen * 8
+	)
 }

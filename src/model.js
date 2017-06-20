@@ -1,32 +1,9 @@
-const emojiPerson = []
-for (let chr of "👮🕵💂👷👸👳💀👽👶👦👧👨👩") {
-	emojiPerson.push(chr)
-}
-const emojiAction = []
-for (let chr of "🏇⛷🏂🏌🏄🚣🏊⛹🏋🚴🎙🎪🛀🎷🎭🎨🏆📚🎸📞🏅🏏📷🏁🏈⚽🚀🏹🍽🎥🔮⌛") {
-	emojiAction.push(chr)
-}
-
-const emojiObject = []
-for (let chr of "☠💣🚽🕰🎀🎁🕹💻🖥📡💰📐📌⛓⛪🚌🚒🚑🚁🍉🍓🌽🌶🍗🍔🍕🌮🍿") {
-	emojiObject.push(chr)
-}
-
-function summarize(alphabet, string) {
-	if (!string) {
-		return ' '
-	}
-	let currentValue = 1
-	for (let chr of string) {
-		currentValue += chr.codePointAt(0) * 7
-		currentValue = currentValue % alphabet.length
-	}
-	return alphabet[currentValue]
-}
+const emojiPerson = codepointArray("👮🕵💂👷👸👳💀👽👶👦👧👨👩")
+const emojiAction = codepointArray("🏇⛷🏂🏌🏄🚣🏊⛹🏋🚴🎙🎪🛀🎷🎭🎨🏆📚🎸📞🏅🏏📷🏁🏈⚽🚀🏹🍽🎥🔮⌛")
+const emojiObject = codepointArray("☠💣🚽🕰🎀🎁🕹💻🖥📡💰📐📌⛓⛪🚌🚒🚑🚁🍉🍓🌽🌶🍗🍔🍕🌮🍿")
 
 class Model {
 	constructor(initialPurpose) {
-		// load settings from localstorage
 		this.settings = {}
 		this.calculatedPassword = ''
 		this.enteredMaster = ''
@@ -42,7 +19,7 @@ class Model {
 		this.selectPurpose(initialPurpose)
 	}
 
-	import(textData) {
+	importSettings(textData) {
 		try {
 			textData.split('\n').map(Settings.fromRow).forEach((setting) => {
 				this.settings[setting.purpose] = setting
@@ -66,7 +43,7 @@ class Model {
 			this.calculatedPassword = ''
 			this.enteredMaster = ''
 		} else {
-			return NO_CHANGE
+			return uilib.NO_CHANGE
 		}
 	}
 
@@ -76,6 +53,8 @@ class Model {
 			this.save()
 		}
 		this.selectedSettings = this.settings[purpose]
+		this.calculatedPassword = ''
+		this.enteredMaster = ''
 	}
 
 	editPurpose(purpose) {
@@ -111,4 +90,28 @@ class Model {
 	save() {
 		localStorage.setItem('mypass.settings', JSON.stringify(Object.values(this.settings)))
 	}
+
+	closeWindow() {
+		window.close()
+	}
+}
+
+function codepointArray(string) {
+	const result = []
+	for (let chr of string) {
+		result.push(chr)
+	}
+	return result
+}
+
+function summarize(alphabet, string) {
+	if (!string) {
+		return ' '
+	}
+	let currentValue = 1
+	for (let chr of string) {
+		currentValue += chr.codePointAt(0) * 7
+		currentValue = currentValue % alphabet.length
+	}
+	return alphabet[currentValue]
 }
