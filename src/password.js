@@ -8,7 +8,6 @@ const defaultAlphabet = lowerCase + upperCase + numeric + symbol
 class Settings {
 	constructor(purpose, version = 0, salt = "salt", length = 40, alphabet = defaultAlphabet) {
 		Object.assign(this, {purpose, version, salt, length, alphabet})
-		console.log(alphabet)
 	}
 
 	password(masterPassword) {

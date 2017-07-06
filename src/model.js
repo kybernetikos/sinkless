@@ -103,7 +103,7 @@ function summarize(alphabet, string) {
 	let currentValue = 7
 	for (let chr of string) {
 		currentValue = currentValue * 31 + chr.codePointAt(0)
-		currentValue = currentValue & 0xffffffffffff
+		currentValue = currentValue & 0x7fffffff
 	}
 	return alphabet[currentValue % alphabet.length]
 }
