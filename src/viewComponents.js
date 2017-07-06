@@ -149,7 +149,7 @@ const settingsImport = (model, action) => form(
 	textarea({rows: 10, cols: 80, name: 'importData'}),
 	br(),
 	backButton(action),
-	button("Import", "importSettings", e.target.form.importData.value)(action)
+	domButton({type: 'button', onclick: (e) => action("importSettings", e.target.form.importData.value)}, "Import")
 )
 
 const passwordView = (model, action) => div(
