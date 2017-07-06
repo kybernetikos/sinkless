@@ -1,6 +1,6 @@
-const emojiPerson = codepointArray("👮🕵💂👷👸👳💀👽👶👦👧👨👩")
-const emojiAction = codepointArray("🏇⛷🏂🏌🏄🚣🏊⛹🏋🚴🎙🎪🛀🎷🎭🎨🏆📚🎸📞🏅🏏📷🏁🏈⚽🚀🏹🍽🎥🔮⌛")
-const emojiObject = codepointArray("☠💣🚽🕰🎀🎁🕹💻🖥📡💰📐📌⛓⛪🚌🚒🚑🚁🍉🍓🌽🌶🍗🍔🍕🌮🍿")
+const emojiPerson = "👮🕵💂👷😈👸👳💀👽👻👶🤖👦👧👨👩".match(/./gu)
+const emojiAction = "🏇⛷🏂🏌🏄🚣🏊⛹🏋🚴🎙🎪👀🛀🎷🎭🎨🏆📚🎸📞🏅🏏📷🏁🏈⚽🚀🏹🍽🎥🔮⌛".match(/./gu)
+const emojiObject = "☠💣🚽🕰🎀🎁🕹💻🖥📡💰📐📌⛓⛪🚌🚒🚑🚁🍉🎩🍓🌽🌶🍗🍔🍕🌮🍿".match(/./gu)
 
 class Model {
 	constructor(initialPurpose) {
@@ -96,22 +96,14 @@ class Model {
 	}
 }
 
-function codepointArray(string) {
-	const result = []
-	for (let chr of string) {
-		result.push(chr)
-	}
-	return result
-}
-
 function summarize(alphabet, string) {
 	if (!string) {
 		return ' '
 	}
-	let currentValue = 1
+	let currentValue = 7
 	for (let chr of string) {
-		currentValue += chr.codePointAt(0) * 7
-		currentValue = currentValue % alphabet.length
+		currentValue = currentValue * 31 + chr.codePointAt(0)
+		currentValue = currentValue & 0xffffffffffff
 	}
-	return alphabet[currentValue]
+	return alphabet[currentValue % alphabet.length]
 }
