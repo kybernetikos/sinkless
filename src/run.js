@@ -1,4 +1,4 @@
-const global = Function('return this')()
+let global = window
 global.tabs = null
 let isExtension = false
 if (global.chrome && global.chrome.tabs) {
