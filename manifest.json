@@ -3,7 +3,7 @@
   "name": "Sinkless",
   "description": "A sync-less password manager",
   "homepage_url": "http://kybernetikos.github.io/sinkless",
-  "version": "1.0",
+  "version": "1.0.3",
   "browser_action": {
     "default_title": "Generate Password",
     "default_popup": "index.html",
