@@ -18,7 +18,8 @@ if (isExtension) {
 		application('selectPurpose', url.origin)
 	})
 } else {
-	application('selectPurpose', global.location.origin)
+    const query = global.location.search.substring(1).split("&").map((pair) => pair.split('=')).reduce((result, [key, value]) => Object.assign(result, {[key]: value === undefined ? true : value}), {})
+	application('selectPurpose', query.purpose || global.location.origin)
 }
 
 window.addEventListener('DOMContentLoaded', () => {
