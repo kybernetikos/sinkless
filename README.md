@@ -6,6 +6,7 @@ Works as an extension in recent chrome and firefox.  Works as a website in recen
 * As a [website](https://kybernetikos.github.io/sinkless)
 * As a [chrome plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless.crx) (but you'll need to run in developer mode)
 * As a [firefox plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless-1.0.6-an%2Bfx.xpi)
+* As a [rust command line tool](https://github.com/kybernetikos/sinkless-rs)
 
 When you need a password, open sinkless, make sure the purpose is right, then enter your master password.
 
