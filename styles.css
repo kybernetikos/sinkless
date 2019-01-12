@@ -3,6 +3,7 @@ body {
     color: aqua;
     font-family: 'DejaVu Sans Mono', monospace;
     font-size: small;
+    width: 43em;
 }
 
 .label {
@@ -21,13 +22,6 @@ input {
     width: 18em;
 }
 
-.password {
-    width: 27em;
-    border: 0;
-    font-size: large;
-    margin-top: 10px;
-}
-
 button {
     border: 1px solid aqua;
     background-color: darkblue;
@@ -42,10 +36,6 @@ button:active {
     color: darkblue;
 }
 
-.settingsEditor {
-    width: 515px;
-}
-
 .allButtons {
     width: 90px;
     user-select: none;
@@ -58,10 +48,6 @@ button:active {
 
 .storedSettingsTable {  }
 
-.passwordGenerator {
-    width: 500px;
-}
-
 .settingsRow {
     white-space: nowrap;
     height: 2em;
@@ -69,4 +55,26 @@ button:active {
 
 .emojisentence {
     font-size: x-large;
+}
+
+.symbolchar {
+    color: yellowgreen;
+}
+
+.numberchar {
+    color: aquamarine;
+}
+
+.password {
+    font-size: 1.27rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    min-height: 30px;
+    display: block;
+    word-wrap: break-word;
+}
+
+.chargroup {
+    margin-right: 6px;
 }

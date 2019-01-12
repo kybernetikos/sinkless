@@ -7,6 +7,8 @@ source ./env.sh
 rm -rf tmp
 rm ../dist/*
 
+# chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# chrome="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 version=$( sed -n 's/.*"version": "\(.*\)",/\1/p' ../manifest.json )
 parts=( ${version//./ } )
 ((parts[2]++))
@@ -23,7 +25,7 @@ cp ../index.html tmp/sinkless
 cp ../manifest.json tmp/sinkless
 cp ../styles.css tmp/sinkless
 
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --pack-extension=./tmp/sinkless --pack-extension-key=./sinkless.pem
+$chrome --pack-extension=./tmp/sinkless --pack-extension-key=./sinkless.pem
 
 cp ./tmp/sinkless.crx ../dist
 

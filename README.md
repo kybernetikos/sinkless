@@ -4,8 +4,8 @@ A sync-less (more or less) password manager.  With emojis! 👍
 Works as an extension in recent chrome and firefox.  Works as a website in recent chrome and firefox.
 
 * As a [website](https://kybernetikos.github.io/sinkless)
-* As a [chrome plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless.crx)
-* As a [firefox plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless-1.0.3-an%2Bfx.xpi)
+* As a [chrome plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless.crx) (but you'll need to run in developer mode)
+* As a [firefox plugin](https://github.com/kybernetikos/sinkless/raw/master/dist/sinkless-1.0.6-an%2Bfx.xpi)
 
 When you need a password, open sinkless, make sure the purpose is right, then enter your master password.
 

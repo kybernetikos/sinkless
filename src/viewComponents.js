@@ -7,6 +7,17 @@ const viewSwitcher = (children) => (model, action) => div(
 	children[model.selectedView](model, action)
 )
 
+function chunk(arr,n){
+	var r = Array(Math.ceil(arr.length/n)).fill();
+	return r.map((e,i) => arr.slice(i*n, i*n+n));
+}
+
+const renderPassword = (password) => {
+	return chunk(password.split('')
+		.map((a) => /[a-zA-Z]/.test(a) ? a : span({className: /[0-9]/.test(a) ? 'numberchar' : 'symbolchar'}, a)), 5)
+		.map((children) => span({className: 'chargroup'}, children))
+}
+
 const passwordGenerator = (model, action) => 	div({className: 'passwordGenerator'},
 	span({className: 'label'}, "Master"),
 	input({
@@ -25,13 +36,11 @@ const passwordGenerator = (model, action) => 	div({className: 'passwordGenerator
 		'data-request-focus': String(!model.calculating && model.calculatedPassword === '')
 	}),
 	br(),
-	input({
+	span({
 		className: 'password',
-		value: model.calculating ? 'calculating...' : String(model.calculatedPassword),
-		onfocus: (e) => {
-			e.target.select()
-		},
-		onkeypress: (e) => {
+		tabIndex: 2,
+		onkeydown: (e) => {
+			console.log('keydown', e.key);
 			if (e.key === 'Enter') {
 				if (e.shiftKey) {
 					if (window.tabs) {
@@ -49,9 +58,15 @@ const passwordGenerator = (model, action) => 	div({className: 'passwordGenerator
 				}
 			}
 		},
-		readonly: true,
+		onclick: (e) => {
+			const selection = window.getSelection();
+			const range = document.createRange();
+			range.selectNodeContents(e.currentTarget);
+			selection.removeAllRanges();
+			selection.addRange(range);
+		},
 		'data-request-focus': String(!model.calculating && model.calculatedPassword !== '')
-	})
+	}, model.calculating ? 'calculating...' : renderPassword(model.calculatedPassword))
 )
 
 const purposeEntry = (model, action) => div({className: 'purposeEntry'},
